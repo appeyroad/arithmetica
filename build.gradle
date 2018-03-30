@@ -1,7 +1,9 @@
-group 'org.appeyroad.s13'
+group 'com.github.appeyroad'
 version '1.0.0'
 
 apply plugin: 'java'
+
+apply plugin: 'maven'
 
 sourceCompatibility = 1.8
 
