@@ -128,6 +128,6 @@ public final class Tree {
 
     @Override
     public String toString() {
-        return root == null ? "NULL" : root.toString();
+        return root == null ? "" : root.toString();
     }
 }

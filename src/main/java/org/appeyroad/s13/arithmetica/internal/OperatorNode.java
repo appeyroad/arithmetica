@@ -2,7 +2,7 @@ package org.appeyroad.s13.arithmetica.internal;
 
 final class OperatorNode extends Node<Node, Node> {
 
-    private static final String NULL = "NULL";
+    private static final String NULL = "";
 
     private final OperatorType op;
 
@@ -15,12 +15,21 @@ final class OperatorNode extends Node<Node, Node> {
     }
 
     @Override
+    void setRight(Node right) {
+        if (getLeft() == null) {
+            super.setLeft(right);
+        }
+        super.setRight(right);
+    }
+
+    @Override
     public long evaluate() {
         final Node l = getLeft();
         final Node r = getRight();
-        final long a = l == null ? 0 : l.evaluate();
-        final long b = r == null ? 0 : r.evaluate();
-        return op.evaluate(a, b);
+        if (r == null) {
+            return l.evaluate();
+        }
+        return op.evaluate(l.evaluate(), r.evaluate());
     }
 
     @Override
@@ -28,10 +37,11 @@ final class OperatorNode extends Node<Node, Node> {
         final Node l = getLeft();
         final Node r = getRight();
         final String sym = op.getSymbol();
-        return String.format("%s %s %s", getString(l), sym, getString(r));
-    }
-
-    private String getString(final Node node) {
-        return node == null ? NULL : node.toString();
+        return String.format(
+                "%s %s %s",
+                l.toString(),
+                sym,
+                r == null ? NULL : r.toString()
+        );
     }
 }

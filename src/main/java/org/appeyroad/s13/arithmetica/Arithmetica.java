@@ -51,7 +51,7 @@ public final class Arithmetica {
 
         final Arithmetica initial = new Arithmetica();
         System.out.printf("%s = %d\n", initial.formula(), initial.evaluate());
-        // Output: NULL = 0
+        // Output:  = 0
         require(
                 0 == initial.evaluate(),
                 "Wrong initial value: " + initial.evaluate()
@@ -62,7 +62,15 @@ public final class Arithmetica {
         // Output: 1 + 23 = 24
         require(
                 1 + 23 == illFormed.evaluate(),
-                "Wrong initial value: " + illFormed.evaluate()
+                "Wrong value: " + illFormed.evaluate()
+        );
+
+        final Arithmetica incomplete = new Arithmetica("42 /".split(" "));
+        System.out.printf("%s = %d\n", incomplete.formula(), incomplete.evaluate());
+        // Output: 42 / = 42
+        require(
+                42 == incomplete.evaluate(),
+                "Wrong value: " + incomplete.evaluate()
         );
     }
 
