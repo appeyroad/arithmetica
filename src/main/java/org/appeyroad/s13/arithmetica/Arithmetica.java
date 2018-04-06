@@ -23,6 +23,10 @@ public final class Arithmetica {
         ss.add(s);
     }
 
+    public void clear() {
+        ss.clear();
+    }
+
     public Optional<Integer> evaluate() {
         final Tree t = new Tree();
         for (final String s : ss) {
@@ -67,5 +71,4 @@ public final class Arithmetica {
                 "Wrong formula " + arithmetica.formula()
         );
     }
-
 }
