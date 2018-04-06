@@ -1,29 +1,29 @@
 package org.appeyroad.s13.arithmetica.internal;
 
-public final class OperatorNode extends Node<Node, Node> {
+final class OperatorNode extends Node<Node, Node> {
 
     private static final String NULL = "NULL";
 
     private final Operators op;
 
-    public OperatorNode(Operators op) {
+    OperatorNode(Operators op) {
         this.op = op;
     }
 
-    public Operators getOperator() {
+    Operators getOperator() {
         return op;
     }
 
-    public int getPrecedence() {
+    int getPrecedence() {
         return op.getPrecedence();
     }
 
     @Override
-    public int evaluate() {
+    public long evaluate() {
         final Node l = getLeft();
         final Node r = getRight();
-        final int a = l == null ? 0 : l.evaluate();
-        final int b = r == null ? 0 : r.evaluate();
+        final long a = l == null ? 0 : l.evaluate();
+        final long b = r == null ? 0 : r.evaluate();
         return op.evaluate(a, b);
     }
 

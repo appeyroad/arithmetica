@@ -6,7 +6,7 @@ public final class Arithmetica {
 
     private final Tree t;
 
-    static void require(boolean condition, String message) {
+    private static void require(boolean condition, String message) {
         if (!condition) {
             throw new IllegalStateException(message);
         }
@@ -23,11 +23,15 @@ public final class Arithmetica {
         return t.add(s);
     }
 
+    public void delete() {
+        t.delete();
+    }
+
     public void clear() {
         t.clear();
     }
 
-    public int evaluate() {
+    public long evaluate() {
         return t.evaluate();
     }
 

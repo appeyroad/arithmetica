@@ -1,10 +1,10 @@
 package org.appeyroad.s13.arithmetica.internal;
 
-public interface Operator {
+interface Operator {
 
     int getPrecedence();
 
-    int evaluate(final int a, final int b);
+    long evaluate(final long a, final long b);
 
     String getSymbol();
 }

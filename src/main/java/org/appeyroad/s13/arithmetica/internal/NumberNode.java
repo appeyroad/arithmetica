@@ -1,28 +1,28 @@
 package org.appeyroad.s13.arithmetica.internal;
 
-public final class NumberNode extends Node<OperatorNode, OperatorNode> {
+final class NumberNode extends Node<OperatorNode, OperatorNode> {
 
-    private int val;
+    private long val;
 
-    public NumberNode(int val) {
+    NumberNode(long val) {
         this.val = val;
     }
 
-    public int getValue() {
+    long getValue() {
         return val;
     }
 
-    public void setValue(int val) {
+    void setValue(long val) {
         this.val = val;
     }
 
     @Override
-    public int evaluate() {
+    long evaluate() {
         return val;
     }
 
     @Override
     public String toString() {
-        return Integer.toString(val);
+        return Long.toString(val);
     }
 }

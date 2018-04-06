@@ -20,7 +20,7 @@ public final class Tree {
                 return true;
         }
         try {
-            final int n = Integer.parseInt(s);
+            final long n = Long.parseLong(s);
             return add(new NumberNode(n));
         } catch (final NumberFormatException e) {
             System.out.println(e.getMessage());
@@ -52,7 +52,7 @@ public final class Tree {
             final String oldVal = String.valueOf(p.getValue());
             final String in = String.valueOf(((NumberNode) node).getValue());
             final String newVal = oldVal + in;
-            final int val = Integer.parseInt(newVal);
+            final long val = Long.parseLong(newVal);
             p.setValue(val);
             return true;
         }
@@ -98,6 +98,22 @@ public final class Tree {
         return false;
     }
 
+    public void delete() {
+        Node previous = null;
+        Node current = root;
+        while (current != null) {
+            if (current.getRight() == null) {
+                if (current == root) {
+                    root = current.getLeft();
+                } else if (previous instanceof OperatorNode) {
+                    ((OperatorNode) previous).setRight(current.getLeft());
+                }
+            }
+            previous = current;
+            current = current.getRight();
+        }
+    }
+
     public void clear() {
         root = null;
     }
@@ -110,7 +126,7 @@ public final class Tree {
         return current;
     }
 
-    public int evaluate() {
+    public long evaluate() {
         return root == null ? 0 : root.evaluate();
     }
 

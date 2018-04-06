@@ -1,6 +1,6 @@
 package org.appeyroad.s13.arithmetica.internal;
 
-public enum Operators implements Operator {
+enum Operators implements Operator {
 
     ADD {
 
@@ -10,7 +10,7 @@ public enum Operators implements Operator {
         }
 
         @Override
-        public int evaluate(int a, int b) {
+        public long evaluate(long a, long b) {
             return a + b;
         }
 
@@ -28,7 +28,7 @@ public enum Operators implements Operator {
         }
 
         @Override
-        public int evaluate(int a, int b) {
+        public long evaluate(long a, long b) {
             return a - b;
         }
 
@@ -46,7 +46,7 @@ public enum Operators implements Operator {
         }
 
         @Override
-        public int evaluate(int a, int b) {
+        public long evaluate(long a, long b) {
             return a * b;
         }
 
@@ -64,7 +64,7 @@ public enum Operators implements Operator {
         }
 
         @Override
-        public int evaluate(int a, int b) {
+        public long evaluate(long a, long b) {
             return a / b;
         }
 
