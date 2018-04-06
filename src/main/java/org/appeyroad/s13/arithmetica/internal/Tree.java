@@ -1,4 +1,4 @@
-package org.appeyroad.s13.arithmetica;
+package org.appeyroad.s13.arithmetica.internal;
 
 public final class Tree {
 
@@ -49,7 +49,10 @@ public final class Tree {
             return true;
         } else if (parent instanceof NumberNode) {
             final NumberNode p = ((NumberNode) parent);
-            final int val = p.getValue() * 10 + ((NumberNode) node).getValue();
+            final String oldVal = String.valueOf(p.getValue());
+            final String in = String.valueOf(((NumberNode) node).getValue());
+            final String newVal = oldVal + in;
+            final int val = Integer.parseInt(newVal);
             p.setValue(val);
             return true;
         }
@@ -107,7 +110,7 @@ public final class Tree {
         return current;
     }
 
-    int evaluate() {
+    public int evaluate() {
         return root == null ? 0 : root.evaluate();
     }
 

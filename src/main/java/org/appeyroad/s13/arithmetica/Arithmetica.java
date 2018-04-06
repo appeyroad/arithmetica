@@ -1,5 +1,7 @@
 package org.appeyroad.s13.arithmetica;
 
+import org.appeyroad.s13.arithmetica.internal.Tree;
+
 public final class Arithmetica {
 
     private final Tree t;
@@ -56,11 +58,11 @@ public final class Arithmetica {
                 "Wrong initial value: " + initial.evaluate()
         );
 
-        final Arithmetica illFormed = new Arithmetica("1++2".split(""));
+        final Arithmetica illFormed = new Arithmetica("1 + + 23".split(" "));
         System.out.printf("%s = %d\n", illFormed.formula(), illFormed.evaluate());
-        // Output: 1 + 2 = 3
+        // Output: 1 + 23 = 24
         require(
-                3 == illFormed.evaluate(),
+                1 + 23 == illFormed.evaluate(),
                 "Wrong initial value: " + illFormed.evaluate()
         );
     }

@@ -1,4 +1,4 @@
-package org.appeyroad.s13.arithmetica;
+package org.appeyroad.s13.arithmetica.internal;
 
 public final class OperatorNode extends Node<Node, Node> {
 
