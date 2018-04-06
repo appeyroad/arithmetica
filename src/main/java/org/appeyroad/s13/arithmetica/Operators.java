@@ -13,6 +13,11 @@ public enum Operators implements Operator {
         public int evaluate(int a, int b) {
             return a + b;
         }
+
+        @Override
+        public String getSymbol() {
+            return "+";
+        }
     },
 
     SUB {
@@ -25,6 +30,11 @@ public enum Operators implements Operator {
         @Override
         public int evaluate(int a, int b) {
             return a - b;
+        }
+
+        @Override
+        public String getSymbol() {
+            return "-";
         }
     },
 
@@ -39,6 +49,11 @@ public enum Operators implements Operator {
         public int evaluate(int a, int b) {
             return a * b;
         }
+
+        @Override
+        public String getSymbol() {
+            return "*";
+        }
     },
 
     DIV {
@@ -51,6 +66,11 @@ public enum Operators implements Operator {
         @Override
         public int evaluate(int a, int b) {
             return a / b;
+        }
+
+        @Override
+        public String getSymbol() {
+            return "/";
         }
     }
 }

@@ -2,6 +2,8 @@ package org.appeyroad.s13.arithmetica;
 
 public final class OperatorNode extends Node<Node, Node> {
 
+    private static final String NULL = "NULL";
+
     private final Operators op;
 
     public OperatorNode(Operators op) {
@@ -27,6 +29,13 @@ public final class OperatorNode extends Node<Node, Node> {
 
     @Override
     public String toString() {
-        return op.name();
+        final Node l = getLeft();
+        final Node r = getRight();
+        final String sym = op.getSymbol();
+        return String.format("%s %s %s", getString(l), sym, getString(r));
+    }
+
+    private String getString(final Node node) {
+        return node == null ? NULL : node.toString();
     }
 }

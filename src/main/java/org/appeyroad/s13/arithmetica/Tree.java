@@ -21,42 +21,45 @@ public final class Tree {
         }
         try {
             final int n = Integer.parseInt(s);
-            add(new NumberNode(n));
-            return true;
+            return add(new NumberNode(n));
         } catch (final NumberFormatException e) {
             System.out.println(e.getMessage());
             return false;
         }
     }
 
-    private void add(final Node node) {
+    private boolean add(final Node node) {
         if (root == null) {
             root = node;
-            return;
+            return true;
         }
 
         if (node instanceof NumberNode) {
-            addNumber((NumberNode) node);
+            return addNumber((NumberNode) node);
         } else if (node instanceof OperatorNode) {
-            addOperator((OperatorNode) node);
+            return addOperator((OperatorNode) node);
         }
+        return false;
     }
 
-    private void addNumber(final NumberNode node) {
+    private boolean addNumber(final NumberNode node) {
         final Node parent = getRightmostNode();
         if (parent instanceof OperatorNode) {
             ((OperatorNode) parent).setRight(node);
+            return true;
         } else if (parent instanceof NumberNode) {
             final NumberNode p = ((NumberNode) parent);
             final int val = p.getValue() * 10 + ((NumberNode) node).getValue();
             p.setValue(val);
+            return true;
         }
+        return false;
     }
 
-    private void addOperator(final OperatorNode node) {
+    private boolean addOperator(final OperatorNode node) {
         Node previous = null;
         Node current = root;
-        while (true) {
+        while (current != null) {
             if (current instanceof NumberNode) {
                 if (current == root) {
                     root = node;
@@ -64,7 +67,7 @@ public final class Tree {
                     ((OperatorNode) previous).setRight(node);
                 }
                 node.setLeft(current);
-                return;
+                return true;
             }
 
             if (current instanceof OperatorNode) {
@@ -72,19 +75,28 @@ public final class Tree {
                 final int otherP = ((OperatorNode) current).getPrecedence();
 
                 if (thisP >= otherP) {
+                    if (current.getRight() == null) {
+                        return false;
+                    }
+
                     if (current == root) {
                         root = node;
                     } else if (previous instanceof OperatorNode) {
                         ((OperatorNode) previous).setRight(node);
                     }
                     node.setLeft(current);
-                    return;
+                    return true;
                 }
             }
 
             previous = current;
             current = current.getRight();
         }
+        return false;
+    }
+
+    public void clear() {
+        root = null;
     }
 
     private Node getRightmostNode() {
@@ -96,6 +108,11 @@ public final class Tree {
     }
 
     int evaluate() {
-        return root.evaluate();
+        return root == null ? 0 : root.evaluate();
+    }
+
+    @Override
+    public String toString() {
+        return root == null ? "NULL" : root.toString();
     }
 }
