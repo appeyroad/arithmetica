@@ -36,10 +36,20 @@ public final class Tree {
         }
 
         if (node instanceof NumberNode) {
-            final OperatorNode parent = (OperatorNode) getRightmostNode();
-            parent.setRight((NumberNode) node);
+            addNumber((NumberNode) node);
         } else if (node instanceof OperatorNode) {
             addOperator((OperatorNode) node);
+        }
+    }
+
+    private void addNumber(final NumberNode node) {
+        final Node parent = getRightmostNode();
+        if (parent instanceof OperatorNode) {
+            ((OperatorNode) parent).setRight(node);
+        } else if (parent instanceof NumberNode) {
+            final NumberNode p = ((NumberNode) parent);
+            final int val = p.getValue() * 10 + ((NumberNode) node).getValue();
+            p.setValue(val);
         }
     }
 
@@ -85,7 +95,7 @@ public final class Tree {
         return current;
     }
 
-    public int evaluate() {
+    int evaluate() {
         return root.evaluate();
     }
 }
