@@ -1,6 +1,6 @@
 package org.appeyroad.s13.arithmetica.internal;
 
-enum Operators implements Operator {
+enum OperatorType implements Operator {
 
     ADD {
 

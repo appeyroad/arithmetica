@@ -7,13 +7,13 @@ public final class Tree {
     public boolean add(final String s) {
         switch (s) {
             case "+":
-                return add(new OperatorNode(Operators.ADD));
+                return add(new OperatorNode(OperatorType.ADD));
             case "-":
-                return add(new OperatorNode(Operators.SUB));
+                return add(new OperatorNode(OperatorType.SUB));
             case "/":
-                return add(new OperatorNode(Operators.DIV));
+                return add(new OperatorNode(OperatorType.DIV));
             case "*":
-                return add(new OperatorNode(Operators.MUL));
+                return add(new OperatorNode(OperatorType.MUL));
         }
         try {
             final long n = Long.parseLong(s);

@@ -4,14 +4,10 @@ final class OperatorNode extends Node<Node, Node> {
 
     private static final String NULL = "NULL";
 
-    private final Operators op;
+    private final OperatorType op;
 
-    OperatorNode(Operators op) {
+    OperatorNode(OperatorType op) {
         this.op = op;
-    }
-
-    Operators getOperator() {
-        return op;
     }
 
     int getPrecedence() {

@@ -2,15 +2,10 @@ package org.appeyroad.s13.arithmetica;
 
 import org.appeyroad.s13.arithmetica.internal.Tree;
 
+@SuppressWarnings("WeakerAccess")
 public final class Arithmetica {
 
     private final Tree t;
-
-    private static void require(boolean condition, String message) {
-        if (!condition) {
-            throw new IllegalStateException(message);
-        }
-    }
 
     public Arithmetica(final String... ss) {
         t = new Tree();
@@ -69,5 +64,11 @@ public final class Arithmetica {
                 1 + 23 == illFormed.evaluate(),
                 "Wrong initial value: " + illFormed.evaluate()
         );
+    }
+
+    private static void require(boolean condition, String message) {
+        if (!condition) {
+            throw new IllegalStateException(message);
+        }
     }
 }
